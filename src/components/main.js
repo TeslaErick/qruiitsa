@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import { Layout, Menu, Breadcrumb,Card, Col, Row } from 'antd';
 import QrReader from 'react-qr-reader';
-import Registro from './registro';
+//import Registro from './registro';
 import Tablita from './tabla';
+import Registro from './mensaje';
 const { Header, Content, Footer, Sider } = Layout;
 
 
@@ -83,7 +84,7 @@ class App extends Component{
       </Layout>
     </Content>
     <Footer style={{ textAlign: 'center' }}>
-      Ant Design ©2016 Created by Bertin Reyes Fonseca
+      QRegister ©2016 Created by Bertin Reyes Fonseca
     </Footer>
   </Layout>
 
