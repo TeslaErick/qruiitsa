@@ -47,11 +47,10 @@ function hasErrors(fieldsError) {
 
         // Only show error after a field is touched.
         const userNameError = isFieldTouched('userName') && getFieldError('userName');
-        const passwordError = isFieldTouched('password') && getFieldError('password');
         return(
               
             // <Button onClick={this.state.data.message}>Success</Button>
-        <Form layout="inline" onSubmit={this.handleSubmit}>
+        <Form onSubmit={this.handleSubmit}>
         <FormItem
           validateStatus={userNameError ? 'error' : ''}
           help={userNameError || ''}
@@ -63,13 +62,53 @@ function hasErrors(fieldsError) {
           )}
         </FormItem>
         <FormItem
-          validateStatus={passwordError ? 'error' : ''}
-          help={passwordError || ''}
+          validateStatus={userNameError ? 'error' : ''}
+          help={userNameError || ''}
         >
-          {getFieldDecorator('password', {
-            rules: [{ required: true, message: 'Please input your Password!' }],
+          {getFieldDecorator('userName', {
+            rules: [{ required: true, message: 'Please input your username!' }],
           })(
-            <Input prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />} type="password" placeholder="Password" />
+            <Input prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="Username" />
+          )}
+        </FormItem>
+        <FormItem
+          validateStatus={userNameError ? 'error' : ''}
+          help={userNameError || ''}
+        >
+          {getFieldDecorator('userName', {
+            rules: [{ required: true, message: 'Please input your username!' }],
+          })(
+            <Input prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="Username" />
+          )}
+        </FormItem>
+        <FormItem
+          validateStatus={userNameError ? 'error' : ''}
+          help={userNameError || ''}
+        >
+          {getFieldDecorator('userName', {
+            rules: [{ required: true, message: 'Please input your username!' }],
+          })(
+            <Input prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="Username" />
+          )}
+        </FormItem>
+        <FormItem
+          validateStatus={userNameError ? 'error' : ''}
+          help={userNameError || ''}
+        >
+          {getFieldDecorator('userName', {
+            rules: [{ required: true, message: 'Please input your username!' }],
+          })(
+            <Input prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="Username" />
+          )}
+        </FormItem>
+        <FormItem
+          validateStatus={userNameError ? 'error' : ''}
+          help={userNameError || ''}
+        >
+          {getFieldDecorator('userName', {
+            rules: [{ required: true, message: 'Please input your username!' }],
+          })(
+            <Input prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="Username" />
           )}
         </FormItem>
         <FormItem>
@@ -78,7 +117,7 @@ function hasErrors(fieldsError) {
             htmlType="submit"
             disabled={hasErrors(getFieldsError())}
           >
-            Log in
+            Registrar
           </Button>
         </FormItem>
       </Form>
