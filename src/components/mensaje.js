@@ -30,7 +30,7 @@ function hasErrors(fieldsError) {
             fetch('http://localhost:3001/api/v1/Alumnos/Insert',{
               method: 'post',
               headers: {
-                "Content-type": "multipart/form-data"
+                "Content-type": "application/json"
               },          
               body: JSON.stringify(values)
             })
