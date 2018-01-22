@@ -46,71 +46,113 @@ function hasErrors(fieldsError) {
         const { getFieldDecorator, getFieldsError, getFieldError, isFieldTouched } = this.props.form;
 
         // Only show error after a field is touched.
-        const userNameError = isFieldTouched('userName') && getFieldError('userName');
+        const matriculaError  = isFieldTouched('Matricula') && getFieldError('Matricula');
+        const nombreError     = isFieldTouched('userName') && getFieldError('userName');
+        const apellidosError  = isFieldTouched('userApellido') && getFieldError('userApellido');
+        const carreraError    = isFieldTouched('userCarrera') && getFieldError('userCarrera');
+        const grupoError      = isFieldTouched('userGrupo') && getFieldError('userGrupo');
+        const aulaError       = isFieldTouched('userAula') && getFieldError('userAula');
+        const cargaError      = isFieldTouched('userCarga') && getFieldError('userCarga');
+
         return(
               
             // <Button onClick={this.state.data.message}>Success</Button>
         <Form onSubmit={this.handleSubmit}>
+
+
         <FormItem
-          validateStatus={userNameError ? 'error' : ''}
-          help={userNameError || ''}
+          validateStatus={matriculaError ? 'error' : ''}
+          help={matriculaError || ''}
         >
-          {getFieldDecorator('userName', {
+          { //principio
+            getFieldDecorator('Matricula', {
+            rules: [{ required: true, message: 'Por favor ingresa tu matricula!' }],
+          })(
+            <Input prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="Matricula" />
+          )
+          //fin 
+          } 
+        </FormItem>
+
+        <FormItem
+          validateStatus={nombreError ? 'error' : ''}
+          help={nombreError || ''}
+        >
+          { //principio
+            getFieldDecorator('userName', {
+            rules: [{ required: true, message: 'Por favor ingresa tu matricula!' }],
+          })(
+            <Input prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="Nombre" />
+          )
+          //fin 
+          } 
+        </FormItem>
+
+        <FormItem
+          validateStatus={apellidosError ? 'error' : ''}
+          help={apellidosError || ''}
+        >
+          {getFieldDecorator('userApellido', {
             rules: [{ required: true, message: 'Please input your username!' }],
           })(
-            <Input prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="Username" />
+            <Input prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="Apellidos" />
           )}
+
         </FormItem>
+
+
         <FormItem
-          validateStatus={userNameError ? 'error' : ''}
-          help={userNameError || ''}
+          validateStatus={carreraError ? 'error' : ''}
+          help={carreraError || ''}
         >
-          {getFieldDecorator('userName', {
+          {getFieldDecorator('userCarrera', {
             rules: [{ required: true, message: 'Please input your username!' }],
           })(
-            <Input prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="Username" />
+            <Input prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="Carrera" />
           )}
+
         </FormItem>
+
+
         <FormItem
-          validateStatus={userNameError ? 'error' : ''}
-          help={userNameError || ''}
+          validateStatus={grupoError ? 'error' : ''}
+          help={grupoError || ''}
         >
-          {getFieldDecorator('userName', {
+          {getFieldDecorator('userGrupo', {
             rules: [{ required: true, message: 'Please input your username!' }],
           })(
-            <Input prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="Username" />
+            <Input prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="Grupo" />
           )}
+
         </FormItem>
+
+
         <FormItem
-          validateStatus={userNameError ? 'error' : ''}
-          help={userNameError || ''}
+          validateStatus={aulaError ? 'error' : ''}
+          help={aulaError || ''}
         >
-          {getFieldDecorator('userName', {
+          {getFieldDecorator('userAula', {
             rules: [{ required: true, message: 'Please input your username!' }],
           })(
-            <Input prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="Username" />
+            <Input prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="Aula" />
           )}
+
         </FormItem>
+
+
         <FormItem
-          validateStatus={userNameError ? 'error' : ''}
-          help={userNameError || ''}
+          validateStatus={cargaError ? 'error' : ''}
+          help={cargaError || ''}
         >
-          {getFieldDecorator('userName', {
+          {getFieldDecorator('userCarga', {
             rules: [{ required: true, message: 'Please input your username!' }],
           })(
-            <Input prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="Username" />
+            <Input prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="Carga" />
           )}
+
         </FormItem>
-        <FormItem
-          validateStatus={userNameError ? 'error' : ''}
-          help={userNameError || ''}
-        >
-          {getFieldDecorator('userName', {
-            rules: [{ required: true, message: 'Please input your username!' }],
-          })(
-            <Input prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="Username" />
-          )}
-        </FormItem>
+
+
         <FormItem>
           <Button
             type="primary"
