@@ -13,6 +13,7 @@ function hasErrors(fieldsError) {
         this.state = {
           data: []
         }
+        this.handleSubmit =  this.handleSubmit.bind(this)
       }
     
       componentDidMount(){
@@ -24,13 +25,14 @@ function hasErrors(fieldsError) {
         this.props.form.validateFields((err, values) => {
           if (!err) {
             console.log('Received values of form: ', JSON.stringify(values));
+            console.log('')
 
             fetch('http://localhost:3001/api/v1/Alumnos/Insert',{
-              method: 'POST',
-              body  : JSON.stringify(values),
-              headers: new Headers({
-                'Content-Type': 'application/json'
-              })
+              method: 'post',
+              headers: {
+                "Content-type": "multipart/form-data"
+              },          
+              body: JSON.stringify(values)
             })
             .then(results =>{
               return results.json();
