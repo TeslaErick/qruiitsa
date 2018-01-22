@@ -23,21 +23,24 @@ function hasErrors(fieldsError) {
         e.preventDefault();
         this.props.form.validateFields((err, values) => {
           if (!err) {
-            console.log('Received values of form: ', values);
+            console.log('Received values of form: ', JSON.stringify(values));
+
+            fetch('http://localhost:3001/api/v1/Alumnos/Insert',{
+              method: 'POST',
+              body  : JSON.stringify(values),
+              headers: new Headers({
+                'Content-Type': 'application/json'
+              })
+            })
+            .then(results =>{
+              return results.json();
+            }).then(data => {
+              this.setState({
+                data: data.recordset,
+              });
+            })
           }
         });
-        const data = new FormData(e.target);
-        fetch('http://localhost:3001/api/v1/Insert/Alumnos',{
-          method: 'POST',
-          body  : data
-        })
-        .then(results =>{
-          return results.json();
-        }).then(data => {
-          this.setState({
-            data: data.recordset,
-          });
-        })
       }
       render(){
         const { getFieldDecorator, getFieldsError, getFieldError, isFieldTouched } = this.props.form;
