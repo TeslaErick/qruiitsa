@@ -11,27 +11,12 @@ function hasErrors(fieldsError) {
     constructor(){
         super();
         this.state = {
-          data: [],
-          pagination: {},
-          loading: false,
+          data: []
         }
       }
     
       componentDidMount(){
         this.props.form.validateFields();
-        this.setState({ loading: true });
-        fetch('http://localhost:3001/api/v1/Insert/Alumnos')
-        .then(results =>{
-          return results.json();
-        }).then(data => {
-          const pagination = { ...this.state.pagination };
-          pagination.total = data.totalCount
-          this.setState({
-            loading: false,
-            data: data.recordset,
-            pagination
-          });
-        })
     }
 
       handleSubmit = (e) => {
@@ -41,18 +26,30 @@ function hasErrors(fieldsError) {
             console.log('Received values of form: ', values);
           }
         });
+        const data = new FormData(e.target);
+        fetch('http://localhost:3001/api/v1/Insert/Alumnos',{
+          method: 'POST',
+          body  : data
+        })
+        .then(results =>{
+          return results.json();
+        }).then(data => {
+          this.setState({
+            data: data.recordset,
+          });
+        })
       }
       render(){
         const { getFieldDecorator, getFieldsError, getFieldError, isFieldTouched } = this.props.form;
 
         // Only show error after a field is touched.
         const matriculaError  = isFieldTouched('Matricula') && getFieldError('Matricula');
-        const nombreError     = isFieldTouched('userName') && getFieldError('userName');
-        const apellidosError  = isFieldTouched('userApellido') && getFieldError('userApellido');
-        const carreraError    = isFieldTouched('userCarrera') && getFieldError('userCarrera');
-        const grupoError      = isFieldTouched('userGrupo') && getFieldError('userGrupo');
-        const aulaError       = isFieldTouched('userAula') && getFieldError('userAula');
-        const cargaError      = isFieldTouched('userCarga') && getFieldError('userCarga');
+        const nombreError     = isFieldTouched('Nombre') && getFieldError('Nombre');
+        const apellidosError  = isFieldTouched('Apellidos') && getFieldError('Apellidos');
+        const carreraError    = isFieldTouched('Carrera') && getFieldError('Carrera');
+        const grupoError      = isFieldTouched('Grupo') && getFieldError('Grupo');
+        const aulaError       = isFieldTouched('Aula') && getFieldError('Aula');
+        const cargaError      = isFieldTouched('Carga') && getFieldError('Carga');
 
         return(
               
@@ -79,8 +76,8 @@ function hasErrors(fieldsError) {
           help={nombreError || ''}
         >
           { //principio
-            getFieldDecorator('userName', {
-            rules: [{ required: true, message: 'Por favor ingresa tu matricula!' }],
+            getFieldDecorator('Nombre', {
+            rules: [{ required: true, message: 'Por favor ingresa tu nombre!' }],
           })(
             <Input prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="Nombre" />
           )
@@ -92,8 +89,8 @@ function hasErrors(fieldsError) {
           validateStatus={apellidosError ? 'error' : ''}
           help={apellidosError || ''}
         >
-          {getFieldDecorator('userApellido', {
-            rules: [{ required: true, message: 'Please input your username!' }],
+          {getFieldDecorator('Apellidos', {
+            rules: [{ required: true, message: 'Por favor ingresa tus apellidos!' }],
           })(
             <Input prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="Apellidos" />
           )}
@@ -105,8 +102,8 @@ function hasErrors(fieldsError) {
           validateStatus={carreraError ? 'error' : ''}
           help={carreraError || ''}
         >
-          {getFieldDecorator('userCarrera', {
-            rules: [{ required: true, message: 'Please input your username!' }],
+          {getFieldDecorator('Carrera', {
+            rules: [{ required: true, message: 'Por favor ingresa tu carrera!' }],
           })(
             <Input prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="Carrera" />
           )}
@@ -118,8 +115,8 @@ function hasErrors(fieldsError) {
           validateStatus={grupoError ? 'error' : ''}
           help={grupoError || ''}
         >
-          {getFieldDecorator('userGrupo', {
-            rules: [{ required: true, message: 'Please input your username!' }],
+          {getFieldDecorator('Grupo', {
+            rules: [{ required: true, message: 'Por favor ingresa tu grupo!' }],
           })(
             <Input prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="Grupo" />
           )}
@@ -131,8 +128,8 @@ function hasErrors(fieldsError) {
           validateStatus={aulaError ? 'error' : ''}
           help={aulaError || ''}
         >
-          {getFieldDecorator('userAula', {
-            rules: [{ required: true, message: 'Please input your username!' }],
+          {getFieldDecorator('Aula', {
+            rules: [{ required: true, message: 'Por favor ingresa tu aula!' }],
           })(
             <Input prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="Aula" />
           )}
@@ -144,10 +141,10 @@ function hasErrors(fieldsError) {
           validateStatus={cargaError ? 'error' : ''}
           help={cargaError || ''}
         >
-          {getFieldDecorator('userCarga', {
-            rules: [{ required: true, message: 'Please input your username!' }],
+          {getFieldDecorator('Cargo', {
+            rules: [{ required: true, message: 'Por favor ingresa tu cargo!' }],
           })(
-            <Input prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="Carga" />
+            <Input prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="Cargo" />
           )}
 
         </FormItem>
